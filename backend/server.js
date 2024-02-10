@@ -1,7 +1,7 @@
 const express=require('express')
 const cors=require('cors')
 const session = require('express-session')
-const partner = require("./routes/partner")
+const api = require("./routes/partner")
 const connectDB = require('./config/db')
 connectDB()
 
@@ -24,7 +24,7 @@ app.get("/",(req,res) => {
   res.status(200).send("Server up and running")
 })
 
-app.use("/partner",partner)
+app.use("/api",api)
 
 
 
