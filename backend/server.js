@@ -1,5 +1,6 @@
 const express=require('express')
 const cors=require('cors')
+const cookieparser=require('cookieparser')
 const session = require('express-session')
 const api = require("./routes/partner")
 const connectDB = require('./config/db')
