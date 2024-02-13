@@ -1,6 +1,6 @@
 const express=require('express')
 const cors=require('cors')
-const cookieparser=require('cookieparser')
+// const cookieparser=require('cookieparser')
 const session = require('express-session')
 const api = require("./routes/partner")
 const connectDB = require('./config/db')
@@ -10,7 +10,7 @@ const app=express()
 
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
-app.use(cookieparser())
+// app.use(cookieparser())
 app.use(express.json())
 
 
