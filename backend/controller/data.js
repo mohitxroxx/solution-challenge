@@ -5,6 +5,7 @@ const User = require("../models/user")
 const nodemailer = require('nodemailer')
 const cloudinary = require("../config/cloudinary")
 const upload = require("../middleware/multer")
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 
 const app = express()
@@ -133,4 +134,84 @@ app.post('/getpost',async(req,res)=>{
         res.status(500).json({ message: 'An error occurred', error: error })
     }
 })
+app.post('/attractions',async(req,res)=>{
+    try {
+        const{park}=req.body
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+        
+        const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+        
+        const prompt = "what are the most famous attractions of "+park+" national park of India"
+        
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        res.status(200).send(text)
+        console.log(text);
+        
+    } catch (error) {
+        
+        res.status(500).json({ message: 'An error occurred', error: error })
+    }
+})
+app.post('/lifeonland',async(req,res)=>{
+    try {
+        const{park}=req.body
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+        
+        const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+        
+        const prompt = "what are the most famous species of animals in "+park+" national park of India"
+        
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        // console.log(json(text));
+        return res.status(200).send(text)
+        
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ message: 'An error occurred', error: error })
+    }
+})
+app.post('/endangered',async(req,res)=>{
+    try {
+        const{park}=req.body
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+        
+        const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+        
+        const prompt = "what are the threatened, endangered and critically endangered species of animals in "+park+" national park of India"
+        
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        return res.status(200).send(text)
+        
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ message: 'An error occurred', error: error })
+    }
+})
+app.post('/ask',async(req,res)=>{
+    try {
+        const{question}=req.body
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+        
+        const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+        
+        const prompt = question+" give the answer in short as this is meant to be a chatbot response"
+        
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        return res.status(200).send(text)
+        
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ message: 'An error occurred', error: error })
+    }
+})
+
+
 module.exports = app
