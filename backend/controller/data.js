@@ -145,7 +145,7 @@ app.post('/attractions', async (req, res) => {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        let text = await response.text();
+        let text = response.text();
           return res.status(200).json(text)
     } catch (error) {
 
@@ -163,7 +163,8 @@ app.post('/lifeonland', async (req, res) => {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        let text = await response.text();
+        let text = response.text();
+        console.log(text)
           return res.status(200).json(text)
     } catch (error) {
         console.error(error)
@@ -181,7 +182,7 @@ app.post('/endangered', async (req, res) => {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        let text = await response.text();
+        let text = response.text();
           return res.status(200).json(text)
     } catch (error) {
         console.error(error)
@@ -199,7 +200,7 @@ app.post('/ask', async (req, res) => {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        let text = await response.text();
+        let text = response.text();
           return res.status(200).json(text)
     } catch (error) {
         console.error(error)
