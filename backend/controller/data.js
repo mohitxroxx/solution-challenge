@@ -166,11 +166,11 @@ app.post('/lifeonland',async(req,res)=>{
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        console.log(json(text));
+        // console.log(json(text));
         return res.status(200).send(text)
         
     } catch (error) {
-        
+        console.error(error)
         return res.status(500).json({ message: 'An error occurred', error: error })
     }
 })
