@@ -136,6 +136,7 @@ app.post('/getpost', async (req, res) => {
 })
 app.post('/attractions', async (req, res) => {
     try {
+        console.log("init")
         const { park } = req.body
         const genAI = new GoogleGenerativeAI(process.env.API_KEY);
         console.log(process.env.API_KEY)
@@ -146,7 +147,7 @@ app.post('/attractions', async (req, res) => {
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        res.status(200).send(text)
+        return res.status(200).send(text)
         console.log(text);
     } catch (error) {
 
@@ -155,6 +156,7 @@ app.post('/attractions', async (req, res) => {
 })
 app.post('/lifeonland', async (req, res) => {
     try {
+        console.log("init")
         const { park } = req.body
         const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
@@ -165,7 +167,7 @@ app.post('/lifeonland', async (req, res) => {
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        res.status(200).send(text)
+        return res.status(200).send(text)
         console.log(text);
     } catch (error) {
         console.error(error)
@@ -174,6 +176,7 @@ app.post('/lifeonland', async (req, res) => {
 })
 app.post('/endangered', async (req, res) => {
     try {
+        console.log("init")
         const { park } = req.body
         const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
@@ -184,7 +187,7 @@ app.post('/endangered', async (req, res) => {
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        res.status(200).send(text)
+        return res.status(200).send(text)
         console.log(text);
     } catch (error) {
         console.error(error)
@@ -193,6 +196,7 @@ app.post('/endangered', async (req, res) => {
 })
 app.post('/ask', async (req, res) => {
     try {
+        console.log("init")
         const { question } = req.body
         const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
@@ -203,7 +207,7 @@ app.post('/ask', async (req, res) => {
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        res.status(200).send(text)
+        return res.status(200).send(text)
         console.log(text);
     } catch (error) {
         console.error(error)
