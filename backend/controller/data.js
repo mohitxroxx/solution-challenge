@@ -138,7 +138,7 @@ app.post('/attractions',async(req,res)=>{
     try {
         const{park}=req.body
         const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-        
+        console.log(process.env.API_KEY)
         const model = genAI.getGenerativeModel({ model: "gemini-pro"});
         
         const prompt = "what are the most famous attractions of "+park+" national park of India"
@@ -146,8 +146,8 @@ app.post('/attractions',async(req,res)=>{
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        res.status(200).send(text)
-        console.log(text);
+        res.status(200).json(text)
+        // console.log(text);
         
     } catch (error) {
         
@@ -167,7 +167,7 @@ app.post('/lifeonland',async(req,res)=>{
         const response = await result.response;
         const text = response.text();
         // console.log(json(text));
-        return res.status(200).send(text)
+        return res.status(200).json(text)
         
     } catch (error) {
         console.error(error)
@@ -186,7 +186,7 @@ app.post('/endangered',async(req,res)=>{
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        return res.status(200).send(text)
+        return res.status(200).json(text)
         
     } catch (error) {
         console.error(error)
@@ -205,7 +205,7 @@ app.post('/ask',async(req,res)=>{
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        return res.status(200).send(text)
+        return res.status(200).json(text)
         
     } catch (error) {
         console.error(error)
