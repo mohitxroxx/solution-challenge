@@ -150,18 +150,12 @@ app.post('/attractions', async (req, res) => {
         text = text.replace(/`/g, '');
         
         text = text.replace(/\\"/g, '"');
-        
-        try {
           const jsonObject = JSON.parse(text);
         
           const jsonString = JSON.stringify(jsonObject, null, 2);
         
           console.log(jsonString);
           return res.status(200).json(jsonString)
-        } catch (error) {
-            console.error('Failed to parse JSON:', error);
-            return res.status(400).json({msg:"cant fetch result"})
-        }
     } catch (error) {
 
         res.status(500).json({ message: 'An error occurred', error: error })
@@ -184,19 +178,12 @@ app.post('/lifeonland', async (req, res) => {
         text = text.replace(/`/g, '');
         
         text = text.replace(/\\"/g, '"');
-        
-        try {
           const jsonObject = JSON.parse(text);
         
           const jsonString = JSON.stringify(jsonObject, null, 2);
         
           console.log(jsonString);
           return res.status(200).json(jsonString)
-        } catch (error) {
-            console.error('Failed to parse JSON:', error);
-            return res.status(400).json({msg:"cant fetch result"})
-        }
-
     } catch (error) {
         console.error(error)
         return res.status(500).json({ message: 'An error occurred', error: error })
@@ -218,18 +205,12 @@ app.post('/endangered', async (req, res) => {
         text = text.replace(/`/g, '');
         
         text = text.replace(/\\"/g, '"');
-        
-        try {
           const jsonObject = JSON.parse(text);
         
           const jsonString = JSON.stringify(jsonObject, null, 2);
         
           console.log(jsonString);
           return res.status(200).json(jsonString)
-        } catch (error) {
-            console.error('Failed to parse JSON:', error);
-            return res.status(400).json({msg:"cant fetch result"})
-        }
     } catch (error) {
         console.error(error)
         return res.status(500).json({ message: 'An error occurred', error: error })
@@ -251,19 +232,12 @@ app.post('/ask', async (req, res) => {
         text = text.replace(/`/g, '');
         
         text = text.replace(/\\"/g, '"');
-        
-        try {
           const jsonObject = JSON.parse(text);
         
           const jsonString = JSON.stringify(jsonObject, null, 2);
         
           console.log(jsonString);
           return res.status(200).json(jsonString)
-        } catch (error) {
-            console.error('Failed to parse JSON:', error);
-            return res.status(400).json({msg:"cant fetch result"})
-        }
-
     } catch (error) {
         console.error(error)
         return res.status(500).json({ message: 'An error occurred', error: error })
