@@ -179,6 +179,7 @@ app.post('/lifeonland', async (req, res) => {
         const result = await model.generateContent(prompt);
         const response = await result.response;
         let text = await response.text();
+        // console.log(text);
         
         text = text.replace(/`/g, '');
         

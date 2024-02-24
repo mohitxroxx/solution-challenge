@@ -14,15 +14,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 
-app.use(
-  session({
-     secret: process.env.SESSION_SECRET,
-     resave: false,
-     saveUninitialized: false,
-     cookie: {},
-  })
-)
-
 
 app.get("/",(req,res) => {
   res.status(200).send("Server up and running")
