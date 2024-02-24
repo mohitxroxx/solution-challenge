@@ -145,8 +145,9 @@ app.post('/attractions', async (req, res) => {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        let text = response.text();
-          return res.status(200).json(text)
+        const text = response.text();
+        res.status(200).send(text)
+        console.log(text);
     } catch (error) {
 
         res.status(500).json({ message: 'An error occurred', error: error })
@@ -163,9 +164,9 @@ app.post('/lifeonland', async (req, res) => {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        let text = response.text();
-        console.log(text)
-          return res.status(200).json(text)
+        const text = response.text();
+        res.status(200).send(text)
+        console.log(text);
     } catch (error) {
         console.error(error)
         return res.status(500).json({ message: 'An error occurred', error: error })
@@ -182,8 +183,9 @@ app.post('/endangered', async (req, res) => {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        let text = response.text();
-          return res.status(200).json(text)
+        const text = response.text();
+        res.status(200).send(text)
+        console.log(text);
     } catch (error) {
         console.error(error)
         return res.status(500).json({ message: 'An error occurred', error: error })
@@ -200,8 +202,9 @@ app.post('/ask', async (req, res) => {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        let text = response.text();
-          return res.status(200).json(text)
+        const text = response.text();
+        res.status(200).send(text)
+        console.log(text);
     } catch (error) {
         console.error(error)
         return res.status(500).json({ message: 'An error occurred', error: error })
