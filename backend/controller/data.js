@@ -146,7 +146,7 @@ app.post('/attractions',async(req,res)=>{
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        res.status(200).json(text)
+        return res.status(200).json(text)
         // console.log(text);
         
     } catch (error) {
