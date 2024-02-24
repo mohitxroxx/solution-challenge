@@ -141,21 +141,27 @@ app.post('/attractions', async (req, res) => {
         console.log(process.env.API_KEY)
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-        const prompt = "what are the most famous attractions of " + park + " national park of India"
+        const prompt = "what are the most famous attractions of " + park + " national park of India including the info and inages in json format"
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        const text = response.text();
-        const lines = text.split('\n');
-        const json = lines.map(line => {
-            const split = line.split(':');
-            const name = split[0].replace('* **', '').replace('**', '');
-            const description = split[1].trim();
-            return { name, description };
-        });
-        return res.status(200).json(json)
-        // console.log(text);
-
+        let text = await response.text();
+        
+        text = text.replace(/`/g, '');
+        
+        text = text.replace(/\\"/g, '"');
+        
+        try {
+          const jsonObject = JSON.parse(text);
+        
+          const jsonString = JSON.stringify(jsonObject, null, 2);
+        
+          console.log(jsonString);
+          return res.status(200).json(jsonString)
+        } catch (error) {
+            console.error('Failed to parse JSON:', error);
+            return res.status(400).json({msg:"cant fetch result"})
+        }
     } catch (error) {
 
         res.status(500).json({ message: 'An error occurred', error: error })
@@ -168,13 +174,27 @@ app.post('/lifeonland', async (req, res) => {
 
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-        const prompt = "what are the most famous species of animals in " + park + " national park of India"
+        const prompt = "what are the most famous species of animals in " + park + " national park of India including the info and inages in json format"
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        const text = response.text();
-        // console.log(json(text));
-        return res.status(200).json(text)
+        let text = await response.text();
+        
+        text = text.replace(/`/g, '');
+        
+        text = text.replace(/\\"/g, '"');
+        
+        try {
+          const jsonObject = JSON.parse(text);
+        
+          const jsonString = JSON.stringify(jsonObject, null, 2);
+        
+          console.log(jsonString);
+          return res.status(200).json(jsonString)
+        } catch (error) {
+            console.error('Failed to parse JSON:', error);
+            return res.status(400).json({msg:"cant fetch result"})
+        }
 
     } catch (error) {
         console.error(error)
@@ -188,13 +208,27 @@ app.post('/endangered', async (req, res) => {
 
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-        const prompt = "what are the threatened, endangered and critically endangered species of animals in " + park + " national park of India"
+        const prompt = "what are the threatened, endangered and critically endangered species of animals in " + park + " national park of India including the info and inages in json format"
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        const text = response.text();
-        return res.status(200).json(text)
-
+        let text = await response.text();
+        
+        text = text.replace(/`/g, '');
+        
+        text = text.replace(/\\"/g, '"');
+        
+        try {
+          const jsonObject = JSON.parse(text);
+        
+          const jsonString = JSON.stringify(jsonObject, null, 2);
+        
+          console.log(jsonString);
+          return res.status(200).json(jsonString)
+        } catch (error) {
+            console.error('Failed to parse JSON:', error);
+            return res.status(400).json({msg:"cant fetch result"})
+        }
     } catch (error) {
         console.error(error)
         return res.status(500).json({ message: 'An error occurred', error: error })
@@ -207,12 +241,27 @@ app.post('/ask', async (req, res) => {
 
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-        const prompt = question + " give the answer in short as this is meant to be a chatbot response"
+        const prompt = question + " give the answer in short as this is meant to be a chatbot response in json format"
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        const text = response.text();
-        return res.status(200).json(text)
+        let text = await response.text();
+        
+        text = text.replace(/`/g, '');
+        
+        text = text.replace(/\\"/g, '"');
+        
+        try {
+          const jsonObject = JSON.parse(text);
+        
+          const jsonString = JSON.stringify(jsonObject, null, 2);
+        
+          console.log(jsonString);
+          return res.status(200).json(jsonString)
+        } catch (error) {
+            console.error('Failed to parse JSON:', error);
+            return res.status(400).json({msg:"cant fetch result"})
+        }
 
     } catch (error) {
         console.error(error)
