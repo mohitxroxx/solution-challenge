@@ -1,3 +1,6 @@
 [submodule "Solidity/lib/forge-std"]
 	path = Solidity/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "Solidity/lib/openzeppelin-contracts"]
+	path = Solidity/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
